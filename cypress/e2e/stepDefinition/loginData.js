@@ -12,8 +12,8 @@ const testData = require('../../fixtures/loginDetails.json');
 //         cy.wait('@dashboard').its('response.statusCode').should('eq',200);
 //         });
 
-Given("correct login details are provided", ()=> {
-        cy.visit('');
+Given('correct login details are provided', ()=> {
+        cy.visit('https://sandbox-app.brighthr.com/lite');
         cy.get("#login-btn").click();
         cy.get("#username-input").type(testData.correctDetails.emailAddress); 
         cy.get("#password-input").type(testData.correctDetails.password);
