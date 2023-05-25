@@ -1,0 +1,22 @@
+{
+"employee1":{
+    
+        "firstname": "Helena",
+        "surname": "Jones",
+        "email": "testing2@test.com",
+        "phonenumber": "0786999999",
+        "jobtitle": "Test2",
+        "subscribe": true,
+        "initials": "HJ"
+    
+    },
+"employee2":{
+    "firstname": "Joe",
+    "surname": "Bloggs",
+    "email": "testing@test.com",
+    "phonenumber": "07812345678",
+    "jobtitle": "Test",
+    "subscribe": false,
+    "initials": "JB"
+    }
+}
