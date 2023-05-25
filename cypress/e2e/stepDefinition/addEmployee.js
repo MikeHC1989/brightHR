@@ -16,9 +16,6 @@ Given("bright hr is loaded and logged in", ()=> {
                     cy.wait(1000)
                     cy.get('.gap-x-8 > .text-white').click()
                     cy.wait(1000)
-                    cy.get('.my-6 > .rounded').click()
-                    cy.wait(1000)
-                    
             }
             else {
             cy.intercept('Get','https://sandbox-app.brighthr.com/dashboard').as('dashboard');
@@ -35,43 +32,40 @@ Given("an employee is added", (employeeData)=> {
     cy.get('.my-6 > .rounded').click();
     cy.get('form > :nth-child(1)',{timeout: 20000}).should('be.visible');
     //employee details
-    cy.get('#firstName').type(employeeData.employee1.firstname);
-    cy.get('#lastName').type(employeeData.employee1.surname);
-    cy.get('#email').type(employeeData.employee1.email);
-    cy.get('#phoneNumber').type(employeeData.employee1.phonenumber);
-    cy.get('#jobTitle').type(employeeData.employee1.jobtitle);
+    cy.get('#firstName').type("Helena");
+    cy.get('#lastName').type("Jones");
+    cy.get('#email').type("testing2@test.com");
+    cy.get('#phoneNumber').type("0786999999");
+    cy.get('#jobTitle').type("Test2");
     cy.get('.sc-kgoBCf').click();
        
     //datepicker
     cy.get('[data-testid="input-selector"]').click();
-    cy.get('.sc-uJMKN').contains('2022').click();
-    cy.get('.sc-jqCOkK').contains('April').click();
-    cy.get('.DayPicker-Month').contains('10').click();
+    cy.get('.DayPicker-Day--today > .DayPicker-Day-Date > .DayPicker-Day-Circle > .DayPicker-Day-Number').click()
     cy.get('.h-auto > .text-white',{timeout: 20000}).should('be.visible')
     cy.get('.h-auto > .text-white').click()
     cy.intercept('Post','https://sandbox-api.brighthr.com/v1/employee').as('employeeAdded');
-    cy.wait('@employeeAdded').its('response.statusCode').should('eq',200);
+    cy.wait('@employeeAdded').its('response.statusCode').should('eq',201);
     
 });
 When("another employee is added", (employeeData)=> {
-    cy.get('.w-full > .disabled\:cursor-default').click();
+    cy.get('.bg-gray-200 .bg-accent-500',{timeout: 100000}).should('be.visible');
+    cy.get('.bg-gray-200 .bg-accent-500').click();
     cy.get('form > :nth-child(1)',{timeout: 20000}).should('be.visible');
     //employee details
-    cy.get('#firstName').type(employeeData.employee2.firstname);
-    cy.get('#lastName').type(employeeData.employee2.surname);
-    cy.get('#email').type(employeeData.employee2.email);
-    cy.get('#phoneNumber').type(employeeData.employee2.phonenumber);
-    cy.get('#jobTitle').type(employeeData.employee2.jobtitle);
+    cy.get('#firstName').type("Joe");
+    cy.get('#lastName').type("Bloggs");
+    cy.get('#email').type("testing@test.com");
+    cy.get('#phoneNumber').type("07812345678");
+    cy.get('#jobTitle').type("test");
 
     //datepicker
     cy.get('[data-testid="input-selector"]').click();
-    cy.get('.sc-uJMKN').contains('2022').click();
-    cy.get('.sc-jqCOkK').contains('April').click();
-    cy.get('.DayPicker-Month').contains('10').click();
+    cy.get('.DayPicker-Day--today > .DayPicker-Day-Date > .DayPicker-Day-Circle > .DayPicker-Day-Number').click()
     cy.get('.h-auto > .text-white',{timeout: 20000}).should('be.visible')
     cy.get('.h-auto > .text-white').click()
     cy.intercept('Post','https://sandbox-api.brighthr.com/v1/employee').as('employeeAdded');
-    cy.wait('@employeeAdded').its('response.statusCode').should('eq',200);
+    cy.wait('@employeeAdded').its('response.statusCode').should('eq',201);
     cy.get('#close-modal').click()
 
     
@@ -83,13 +77,14 @@ When("navigate back to employee tab", (employeeData)=> {
     
 });
 Then("both employees are displayed", (employeeData)=> {
-    cy.get('.grid').should.contains(
-        cy.contains((employeeData.employee1.firstname+" "+record.surname), {include: 'visible'}),
-        cy.contains(employeeData.employee1.jobtitle, {include: 'visible'}),
-        cy.contains(employeeData.employee1.initials, {include: 'visible'}),
-        cy.contains((employeeData.employee2.firstname+" "+record.surname), {include: 'visible'}),
-        cy.contains(employeeData.employee2.jobtitle, {include: 'visible'}),
-        cy.contains(employeeData.employee2.initials, {include: 'visible'})
-    )
+    cy.get("#app > div > div > div.side-nav > div > div.grid.grid-cols-1.gap-8.py-6.mt-6.xl\:grid-cols-3.md\:grid-cols-2").should('have.value',
     
+        cy.contains(("Helena"+" "+"Jones"), {include: 'visible'}),
+        cy.contains("Test2", {include: 'visible'}),
+        cy.contains("HJ", {include: 'visible'}),
+        cy.contains(("Joe"+" "+"Bloggs"), {include: 'visible'}),
+        cy.contains("Test", {include: 'visible'}),
+        cy.contains("JB", {include: 'visible'}),
+    )
 })
+    
