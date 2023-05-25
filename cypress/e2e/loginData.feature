@@ -1,4 +1,4 @@
-Feature: Login Test
+Feature: loginData
 
 Scenario: login successful
 Given correct login details are provided
