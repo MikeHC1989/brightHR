@@ -1,0 +1,11 @@
+{
+"correctDetails":{
+"emailAddress": "michealheeney@gmail.com",
+"password" : "caleb*CARTWRIGHT*2020"
+
+},
+"incorrectDetails":{
+    "emailAddress": "michealheeney@gmail.com",
+    "password" : "caleb*CARTWRIGHT*2021"
+}
+}
