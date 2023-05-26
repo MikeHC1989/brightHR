@@ -7,5 +7,7 @@ module.exports = defineConfig({
       on('file:preprocessor', cucumber())
     },
     specPattern: 'cypress/intergration/*.feature',
-  },
+    watchforfilechanges: false,
+    fixturesFolder:"./cypress/fixtures"
+  }
 });

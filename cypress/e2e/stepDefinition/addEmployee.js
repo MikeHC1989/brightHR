@@ -3,7 +3,7 @@ const employeeData = require('../../fixtures/addEmployee.json');
 const loginData = require ('../../fixtures/loginDetails.json')
 
 Given("bright hr is loaded and logged in", ()=> {
-    cy.visit('https://sandbox-app.brighthr.com/lite');
+    cy.visit(loginData.Url.baseURL);
     cy.get(".bg-white").click();
     cy.get('.p-5', {timeout: 20000}).should('be.visible');
     cy.get("#email").type(loginData.correctDetails.emailAddress); 

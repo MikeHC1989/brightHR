@@ -3,7 +3,7 @@ const testData = require('../../fixtures/loginDetails.json');
 
 
 Given('correct login details are provided', ()=> {
-        cy.visit('https://sandbox-app.brighthr.com/lite');
+        cy.visit(loginData.Url.baseURL);
         cy.get(".bg-white").click();
         cy.get('.p-5', {timeout: 20000}).should('be.visible');
         cy.get("#email").type(testData.correctDetails.emailAddress); 
@@ -14,7 +14,7 @@ Given('correct login details are provided', ()=> {
         });
 
 Given ("incorrect login details provided", ()=> {
-        cy.visit('https://sandbox-app.brighthr.com/lite');
+        cy.visit(loginData.Url.baseURL);
         cy.get(".bg-white").click();
         cy.get('.p-5', {timeout: 20000}).should('be.visible');
         cy.get("#email").type(testData.incorrectDetails.emailAddress); 
