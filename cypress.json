@@ -1,0 +1,4 @@
+{
+    "watchforfilechanges": false,
+    "fixturesFolder":"./cypress/fixtures"
+}
